@@ -20,3 +20,20 @@ else
   echo "curl or wget is required to install oh-my-zsh." >&2
   exit 1
 fi
+
+target="${HOME}/dotfiles-server/zsh/.zshrc"
+link="${HOME}/.zshrc"
+
+if [ -L "${link}" ]; then
+  if [ "$(readlink "${link}")" = "${target}" ]; then
+    echo ".zshrc already linked correctly"
+  else
+    rm "${link}"
+    ln -s "${target}" "${link}"
+  fi
+elif [ -e "${link}" ]; then
+  rm "${link}"
+  ln -s "${target}" "${link}"
+else
+  ln -s "${target}" "${link}"
+fi
