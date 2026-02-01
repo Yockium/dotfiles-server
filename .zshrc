@@ -9,18 +9,14 @@ export BIRA_PROMPT_PATH=long
 export BIRA_SHOW_EXIT_STATUS=true
 
 # OH MY ZSH
+plugins=(
+  git
+  fzf-tab
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
 source $ZSH/oh-my-zsh.sh
-
-# ZINIT
-source /usr/share/zinit/zinit.zsh
-zinit light aloxaf/fzf-tab
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-# Completion
-autoload -Uz compinit
-compinit -u
-zinit cdreplay -q
 
 # Zoxide
 eval "$(zoxide init zsh)"

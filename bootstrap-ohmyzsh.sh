@@ -21,7 +21,28 @@ else
   exit 1
 fi
 
-target="${HOME}/dotfiles-server/zsh/.zshrc"
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required to install oh-my-zsh plugins." >&2
+  exit 1
+fi
+
+ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
+plugins_dir="${ZSH_CUSTOM}/plugins"
+mkdir -p "${plugins_dir}"
+
+if [ ! -d "${plugins_dir}/fzf-tab" ]; then
+  git clone https://github.com/Aloxaf/fzf-tab "${plugins_dir}/fzf-tab"
+fi
+
+if [ ! -d "${plugins_dir}/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${plugins_dir}/zsh-autosuggestions"
+fi
+
+if [ ! -d "${plugins_dir}/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting "${plugins_dir}/zsh-syntax-highlighting"
+fi
+
+target="${HOME}/dotfiles-server/.zshrc"
 link="${HOME}/.zshrc"
 
 if [ -L "${link}" ]; then

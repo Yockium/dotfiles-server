@@ -3,4 +3,4 @@
 set -euo pipefail
 
 apt update
-apt install -y zsh tmux fzf ripgrep curl
+apt install -y zsh tmux fzf ripgrep curl git
